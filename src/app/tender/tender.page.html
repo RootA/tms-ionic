@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>TMS</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-toolbar>
+        <ion-searchbar></ion-searchbar>
+      </ion-toolbar>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>{{ tender.company_name }}</ion-card-subtitle>
+        <ion-card-title><strong>{{ tender.title }}</strong></ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content text-wrap>
+        {{ (tender.description | slice:0:400)}}
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+  
