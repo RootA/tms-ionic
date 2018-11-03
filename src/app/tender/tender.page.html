@@ -1,22 +1,47 @@
 <ion-header>
     <ion-toolbar>
-      <ion-title>TMS</ion-title>
+      <ion-title routerLink="" routerDirection="root">TMS</ion-title>
+      <ion-buttons slot="end">
+        <ion-button routerLink="" routerDirection="root">LOGIN</ion-button>
+        <!-- <ion-button shape="round" fill="outline" color="light"  (click)="authService.login()" *ngIf="!authService.isLoggedIn">Login</ion-button> -->
+        <!-- <ion-button shape="round" fill="outline" color="light"  (click)="authService.logout()" *ngIf="authService.isLoggedIn">Logout</ion-button> -->
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
   
   <ion-content padding>
-    <ion-toolbar>
-        <ion-searchbar></ion-searchbar>
-      </ion-toolbar>
-    <ion-card>
+    <ion-card *ngIf="tender">
       <ion-card-header>
         <ion-card-subtitle>{{ tender.company_name }}</ion-card-subtitle>
         <ion-card-title><strong>{{ tender.title }}</strong></ion-card-title>
+        <br/>
+        <ion-chip color="secondary">
+          <ion-label color="dark">{{ tender.category }}</ion-label>
+        </ion-chip>
+        <br/>
+        <ul>
+          <li>Application Start Date : {{ tender.application_start_date }}</li>
+          <br/>
+          <li>Application Close Date : {{ tender.application_close_date }}</li>
+        </ul>
       </ion-card-header>
     
       <ion-card-content text-wrap>
-        {{ (tender.description | slice:0:400)}}
+        {{ (tender.description)}}
+        
+        <br/>
+        <br/>
+        <br/>
+        <ion-list *ngIf="tender.docs">
+          <ion-item *ngFor="let doc of tender.docs; let i = index">
+            <ion-label>
+              <h3>{{ doc.doc_url }}</h3>
+            </ion-label>
+          </ion-item>
+        </ion-list>
       </ion-card-content>
+      <ion-button shape="round" color="primary" fill="outline">Apply</ion-button>
+      <br/>
     </ion-card>
   </ion-content>
   

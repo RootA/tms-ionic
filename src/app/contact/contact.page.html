@@ -1,23 +1,74 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Contact
+      Account
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>
-      <ion-label>
-        Follow us on Twitter
-      </ion-label>
-    </ion-list-header>
-    <ion-item>
-      <ion-label>
-        <ion-icon name="logo-ionic" slot="start"></ion-icon>
-        @ionicframework
-      </ion-label>
-    </ion-item>
-  </ion-list>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Signup</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <form #form="ngForm" (ngSubmit)="login(form)" novalidate>
+            <ion-item>
+              <ion-input required type="email" [(ngModel)]="credentials.email" ngControl="email" [ngModelOptions]="{standalone: true}"placeholder="Email"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input required type="password" [(ngModel)]="credentials.password" ngControl="password" [ngModelOptions]="{standalone: true}" placeholder="*********"></ion-input>
+              </ion-item>
+            <div padding>
+              <ion-button shape="round" color="primary" fill="outline" (click)="login(form)">Sign In</ion-button>
+            </div>
+        </form>
+        </ion-card-content>
+    </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+        <ion-card-title>Signup</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form #form="ngForm" (ngSubmit)="signUp(form)" novalidate>
+        <ion-item>
+          <ion-input required type="text" [(ngModel)]="account.first_name" ngControl="first_name" [ngModelOptions]="{standalone: true}" placeholder="First Name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input required type="text" [(ngModel)]="account.last_name" ngControl="last_name" [ngModelOptions]="{standalone: true}" placeholder="Last Name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input required type="email" [(ngModel)]="account.email" ngControl="email" [ngModelOptions]="{standalone: true}"placeholder="Email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input required type="number" [(ngModel)]="account.phone_number" ngControl="phone_number" [ngModelOptions]="{standalone: true}" placeholder="Phone Number"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="user_types">
+          <ion-label>Choose One :</ion-label>
+          <ion-select value="brown" ok-text="Okay" cancel-text="Dismiss" [(ngModel)]="account.user_type" [ngModelOptions]="{standalone: true}">
+            <ion-select-option *ngFor="let type of user_types" [value]=type.public_id ngControl="user_type">{{ type.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="categories">
+          <ion-label>Choose One :</ion-label>
+          <ion-select value="brown" ok-text="Okay" cancel-text="Dismiss" [(ngModel)]="account.category_id" [ngModelOptions]="{standalone: true}">
+            <ion-select-option *ngFor="let category of categories" [value]=category.public_id ngControl="category_id">{{ category.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input required type="text" [(ngModel)]="account.company_name"  ngControl="company_name" [ngModelOptions]="{standalone: true}" placeholder="CompanyName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input required type="text" [(ngModel)]="account.address"  ngControl="address" [ngModelOptions]="{standalone: true}" placeholder="Address"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-textarea required type="text" [(ngModel)]="account.description" ngControl="description" [ngModelOptions]="{standalone: true}" placeholder="Description of what you do"></ion-textarea>
+        </ion-item>
+        <div padding>
+          <ion-button shape="round" color="primary" fill="outline" (click)="signUp(form)">Sign Up</ion-button>
+        </div>
+    </form>
+    </ion-card-content>
+</ion-card>
 </ion-content>
