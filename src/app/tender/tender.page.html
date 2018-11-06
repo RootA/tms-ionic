@@ -2,7 +2,7 @@
     <ion-toolbar>
       <ion-title routerLink="" routerDirection="root">TMS</ion-title>
       <ion-buttons slot="end">
-        <ion-button routerLink="" routerDirection="root">LOGIN</ion-button>
+        <ion-button routerLink="" *ngIf="is_not_logged_in" routerDirection="root">LOGIN</ion-button>
         <!-- <ion-button shape="round" fill="outline" color="light"  (click)="authService.login()" *ngIf="!authService.isLoggedIn">Login</ion-button> -->
         <!-- <ion-button shape="round" fill="outline" color="light"  (click)="authService.logout()" *ngIf="authService.isLoggedIn">Logout</ion-button> -->
       </ion-buttons>
@@ -40,7 +40,7 @@
           </ion-item>
         </ion-list>
       </ion-card-content>
-      <ion-button shape="round" color="primary" fill="outline">Apply</ion-button>
+      <ion-button shape="round" color="primary" fill="outline" (click)="Apply(tender.public_id)">Apply</ion-button>
       <br/>
     </ion-card>
   </ion-content>

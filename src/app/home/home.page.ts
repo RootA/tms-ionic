@@ -20,4 +20,21 @@ export class HomePage{
   openDetails(public_id){
     this.navCtrl.navigateForward(`/tender/${public_id}`);
   }
+
+  getData(refresher){
+    let url = 'http://0.0.0.0:5000/api/v1/tenders'
+    this.httpClient.get(url).subscribe(data => {this.tenders = data});
+    refresher.target.complete();
+  }
+
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.getData(refresher);
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.target.complete();
+    }, 2000);
+  }
+
+
 }

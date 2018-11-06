@@ -12,11 +12,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ApiService } from './api.service';
 import { CapitalizePipe } from './pipes/capitalize.pipe'
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent, CapitalizePipe],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot()],
   providers: [
     StatusBar,
     SplashScreen,

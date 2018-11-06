@@ -7,9 +7,33 @@
 </ion-header>
 
 <ion-content>
-    <ion-card>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher>
+      
+    <ion-card *ngIf="accountcard">
         <ion-card-header>
-            <ion-card-title>Signup</ion-card-title>
+            <ion-card-title>Account Details</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+
+          <p><strong>Full Name : </strong>{{account_details.full_name.__zone_symbol__value}}</p>
+          <p><strong>User Type : </strong> {{account_details.user_type.__zone_symbol__value}}</p>
+          <p><strong>Company Name : </strong> {{account_details.company_name.__zone_symbol__value}}</p>
+          <p><strong>Email :</strong> {{account_details.email.__zone_symbol__value}}</p>
+          <p><strong>Phone Number : </strong> {{account_details.phone_number.__zone_symbol__value}}</p>
+          <ion-button shape="round" color="danger" fill="outline" (click)="signOut()">Sign Out</ion-button>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="logincard">
+        <ion-card-header>
+            <ion-card-title>SignIn</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <form #form="ngForm" (ngSubmit)="login(form)" novalidate>
@@ -21,12 +45,13 @@
               </ion-item>
             <div padding>
               <ion-button shape="round" color="primary" fill="outline" (click)="login(form)">Sign In</ion-button>
+              <ion-button shape="round" color="secondary" fill="outline" (click)="showSignup()">Register</ion-button>
             </div>
         </form>
         </ion-card-content>
     </ion-card>
 
-  <ion-card>
+  <ion-card *ngIf="signupcard">
     <ion-card-header>
         <ion-card-title>Signup</ion-card-title>
     </ion-card-header>
@@ -66,7 +91,8 @@
           <ion-textarea required type="text" [(ngModel)]="account.description" ngControl="description" [ngModelOptions]="{standalone: true}" placeholder="Description of what you do"></ion-textarea>
         </ion-item>
         <div padding>
-          <ion-button shape="round" color="primary" fill="outline" (click)="signUp(form)">Sign Up</ion-button>
+          <ion-button shape="round" color="primary" fill="outline" (click)="signUp(form)">Register</ion-button>
+          <ion-button shape="round" color="secondary" fill="outline" (click)="showLogin(form)">Sign In</ion-button>
         </div>
     </form>
     </ion-card-content>

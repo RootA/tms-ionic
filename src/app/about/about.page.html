@@ -1,7 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>About</ion-title>
+    <ion-title>My Tender History</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher>
+  <div *ngIf="data">
+      <ion-card *ngFor="let tender of tenders;">
+          <ion-card-header>
+            {{tender.tender.title}}
+          </ion-card-header>
+          <ion-card-content>
+            <p><ion-badge color="secondary">{{tender.status}}</ion-badge></p>
+            <ul>
+              <li><strong>Application close date : </strong> {{tender.tender.application_close_date}}</li>
+              <li><strong>Tenderer Details : </strong>
+                <ul>
+                  <li><strong>Name :</strong> {{tender.tender.owner.company}}</li>
+                  <li><strong>Email :</strong> {{tender.tender.owner.email}}</li>
+                  <li><strong>Phone Number :</strong> {{tender.tender.owner.phone_number}}</li>
+                </ul>
+              </li>
+            </ul>
+          </ion-card-content>
+        </ion-card>
+  </div>
+</ion-content>

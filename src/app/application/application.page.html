@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title routerLink="" routerDirection="root">Application</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Create your Bid</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <form #form="ngForm" (ngSubmit)="createBid(form)" novalidate>
+            <label for="bid.duration"> Duration (days)</label>
+            <ion-item>
+              <ion-input required type="number" [(ngModel)]="bid.duration" ngControl="number" [ngModelOptions]="{standalone: true}"placeholder="# of days"></ion-input>
+            </ion-item>
+            <br/>
+            <br/>
+            <label for="bid.amount"> Amount (KES)</label>
+            <ion-item>
+                <ion-input required type="number" [(ngModel)]="bid.amount" ngControl="number" [ngModelOptions]="{standalone: true}" placeholder="Cost"></ion-input>
+              </ion-item>
+            <div padding>
+              <ion-button  color="primary" fill="outline" (click)="createBid(form)">Apply</ion-button>
+            </div>
+        </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
